@@ -1,9 +1,9 @@
 import Link from 'next/link'
 
+import NextTextLogo from '@/components/next-text-logo'
 import { Button } from '@/components/ui/button'
 
-import NextTextLogo from '../next-text-logo'
-import MobileSheet from './mobile-sheet/mobile-sheet'
+import MobileSheet from './mobile-sheet'
 
 export default function Header() {
   return (
@@ -21,7 +21,7 @@ export default function Header() {
               Log in
             </Link>
           </Button>
-          <Button variant='outline' asChild>
+          <Button variant='outline' className='hidden sm:flex' asChild>
             <Link href='/signup' className='hover:underline'>
               Create an account
             </Link>

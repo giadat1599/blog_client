@@ -10,7 +10,7 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: 'NEXT Blog',
-  description: 'Share '
+  description: 'Share thoughts, tips or anything to the community'
 }
 
 export default function RootLayout({

@@ -5,7 +5,7 @@ import { SignUpFormValues } from '@/app/(auth)/_schemas/signup-form-schema'
 import { Alert, AlertDescription } from '@/components/ui/alert'
 import { FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
-import useCountDown from '@/hooks/use-countdown'
+import useCountDown from '@/hooks/utils/use-countdown'
 
 export default function VerificationCodeForm() {
   const { start, secondsLeft, formatToMinutes } = useCountDown()

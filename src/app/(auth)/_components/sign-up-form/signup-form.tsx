@@ -8,7 +8,7 @@ import { signUpFormSchema, SignUpFormValues } from '@/app/(auth)/_schemas/signup
 import { Button } from '@/components/ui/button'
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
-import useUnloadWarning from '@/hooks/use-unload-warning'
+import useUnloadWarning from '@/hooks/utils/use-unload-warning'
 
 import VerificationCodeForm from './verification-code-form'
 

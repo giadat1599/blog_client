@@ -3,6 +3,7 @@ import Link from 'next/link'
 import LoginForm from '../_components/login-form'
 
 export default function LoginPage() {
+  // TODO: check if user is authenticated, redirect user to home page
   return (
     <div>
       <LoginForm />

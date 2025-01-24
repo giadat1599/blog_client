@@ -3,6 +3,7 @@ import Link from 'next/link'
 import SignUpForm from '../_components/sign-up-form/signup-form'
 
 export default function SignUpPage() {
+  // TODO: check if user is authenticated, redirect user to home page
   return (
     <div>
       <SignUpForm />

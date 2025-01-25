@@ -7,15 +7,17 @@ import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 
 import { loginFormSchema, LoginFormValues } from '@/app/(auth)/_schemas/login-form-schema'
-import { Button } from '@/components/ui/button'
+import LoadingButton from '@/components/loading-button'
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import useCurrentUser from '@/hooks/use-current-user'
+import { useToast } from '@/hooks/use-toast'
 import { UNAUTHORIZED } from '@/lib/http-status'
 import { login } from '@/services/client/auth'
 
 export default function LoginForm() {
   const router = useRouter()
+  const { toast } = useToast()
   const { mutate: mutateUser } = useCurrentUser()
   const [error, setError] = useState<string | null>(null)
   const formMethods = useForm<LoginFormValues>({
@@ -35,8 +37,14 @@ export default function LoginForm() {
     } catch (error) {
       if (error instanceof HTTPError) {
         if (error.response.status === UNAUTHORIZED) {
-          setError('Username or password is incorrect')
+          setError('Username or password is incorrect.')
         }
+      } else {
+        toast({
+          variant: 'destructive',
+          title: 'Uh oh! Something went wrong.',
+          description: 'There was a problem with your request. Please try again'
+        })
       }
     }
   }
@@ -73,9 +81,9 @@ export default function LoginForm() {
           )}
         />
         {error && <p className='text-[0.8rem] font-medium text-destructive'>{error}</p>}
-        <Button className='w-full' size='lg'>
+        <LoadingButton className='w-full' size='lg' loading={formMethods.formState.isSubmitting}>
           Log in
-        </Button>
+        </LoadingButton>
       </form>
     </Form>
   )

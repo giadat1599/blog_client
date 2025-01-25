@@ -1,9 +1,14 @@
 import Link from 'next/link'
+import { redirect } from 'next/navigation'
+
+import { getCurrentUser } from '@/services/server/auth'
 
 import LoginForm from '../_components/login-form'
 
-export default function LoginPage() {
-  // TODO: check if user is authenticated, redirect user to home page
+export default async function LoginPage() {
+  const user = await getCurrentUser()
+  if (user) redirect('/')
+
   return (
     <div>
       <LoginForm />

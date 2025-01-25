@@ -6,6 +6,7 @@ import NextTextLogo from '@/components/next-text-logo'
 import { Button } from '@/components/ui/button'
 import useCurrentUser from '@/hooks/use-current-user'
 
+import AvatarDropdown from './avatar-dropdown'
 import MobileSheet from './mobile-sheet'
 
 export default function Header() {
@@ -34,7 +35,7 @@ export default function Header() {
             </Button>
           </div>
         )}
-        {user && <p>{user.username}</p>}
+        {user && <AvatarDropdown />}
       </div>
     </header>
   )

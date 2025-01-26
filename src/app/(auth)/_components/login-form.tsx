@@ -11,13 +11,13 @@ import LoadingButton from '@/components/loading-button'
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import useCurrentUser from '@/hooks/use-current-user'
-import { useToast } from '@/hooks/use-toast'
+import useSomethingWentWrongToast from '@/hooks/utils/use-st-went-wrong-toast'
 import { UNAUTHORIZED } from '@/lib/http-status'
 import { login } from '@/services/client/auth'
 
 export default function LoginForm() {
   const router = useRouter()
-  const { toast } = useToast()
+  const errorToast = useSomethingWentWrongToast()
   const { mutate: mutateUser } = useCurrentUser()
   const [error, setError] = useState<string | null>(null)
   const formMethods = useForm<LoginFormValues>({
@@ -40,11 +40,7 @@ export default function LoginForm() {
           setError('Username or password is incorrect.')
         }
       } else {
-        toast({
-          variant: 'destructive',
-          title: 'Uh oh! Something went wrong.',
-          description: 'There was a problem with your request. Please try again'
-        })
+        errorToast()
       }
     }
   }

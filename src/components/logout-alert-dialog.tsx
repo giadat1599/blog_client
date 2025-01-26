@@ -9,7 +9,7 @@ import {
   AlertDialogTitle
 } from '@/components/ui/alert-dialog'
 import useCurrentUser from '@/hooks/use-current-user'
-import { useToast } from '@/hooks/use-toast'
+import useSomethingWentWrongToast from '@/hooks/utils/use-st-went-wrong-toast'
 import { logout } from '@/services/client/auth'
 
 interface LogoutAlertDialogProps {
@@ -19,18 +19,14 @@ interface LogoutAlertDialogProps {
 
 export default function LogoutAlertDialog({ open, onOpenChange }: LogoutAlertDialogProps) {
   const { mutate } = useCurrentUser()
-  const { toast } = useToast()
+  const errorToast = useSomethingWentWrongToast()
 
   const onLogout = async () => {
     try {
       await logout()
       mutate(null)
     } catch {
-      toast({
-        variant: 'destructive',
-        title: 'Uh oh! Something went wrong.',
-        description: 'There was a problem with your request. Please try again'
-      })
+      errorToast()
     }
   }
   return (

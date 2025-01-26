@@ -11,7 +11,7 @@ import LoadingButton from '@/components/loading-button'
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import useCurrentUser from '@/hooks/use-current-user'
-import { useToast } from '@/hooks/use-toast'
+import useSomethingWentWrongToast from '@/hooks/utils/use-st-went-wrong-toast'
 import useUnloadWarning from '@/hooks/utils/use-unload-warning'
 import { BAD_REQUEST, CONFLICT } from '@/lib/http-status'
 import { requestVerificationCode, signUp } from '@/services/client/auth'
@@ -19,7 +19,7 @@ import { requestVerificationCode, signUp } from '@/services/client/auth'
 import VerificationCodeForm from './verification-code-form'
 
 export default function SignUpForm() {
-  const { toast } = useToast()
+  const errorToast = useSomethingWentWrongToast()
   const { mutate } = useCurrentUser()
   const router = useRouter()
   const [isVerificationStep, setIsVerificationStep] = useState(false)
@@ -44,11 +44,7 @@ export default function SignUpForm() {
           formMethods.setError('email', { message: 'Email already exists' })
         }
       } else {
-        toast({
-          variant: 'destructive',
-          title: 'Uh oh! Something went wrong.',
-          description: 'There was a problem with your request. Please try again'
-        })
+        errorToast()
       }
     }
   }
@@ -70,11 +66,7 @@ export default function SignUpForm() {
           }
         }
       } else {
-        toast({
-          variant: 'destructive',
-          title: 'Uh oh! Something went wrong.',
-          description: 'There was a problem with your request. Please try again'
-        })
+        errorToast()
       }
     }
   }

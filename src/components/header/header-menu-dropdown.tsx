@@ -2,7 +2,6 @@ import Link from 'next/link'
 import { useState } from 'react'
 
 import LogoutAlertDialog from '@/components/logout-alert-dialog'
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -10,9 +9,10 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu'
+import UserAvatar from '@/components/user-avatar'
 import useCurrentUser from '@/hooks/use-current-user'
 
-export default function AvatarDropdown() {
+export default function HeaderMenuDropdown() {
   const { user } = useCurrentUser()
   const [confirmLogout, setConfirmLogout] = useState(false)
 
@@ -20,10 +20,7 @@ export default function AvatarDropdown() {
     <>
       <DropdownMenu>
         <DropdownMenuTrigger className='outline-none'>
-          <Avatar className='size-11'>
-            <AvatarImage src={user?.avatarUrl || undefined} alt='avatar' />
-            <AvatarFallback>{user?.displayName.substring(0, 1).toUpperCase()}</AvatarFallback>
-          </Avatar>
+          <UserAvatar user={user} className='size-11' />
         </DropdownMenuTrigger>
         <DropdownMenuContent className='w-56'>
           <DropdownMenuItem asChild className='flex flex-col items-start cursor-pointer group'>

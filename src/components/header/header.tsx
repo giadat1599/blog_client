@@ -6,14 +6,14 @@ import NextTextLogo from '@/components/next-text-logo'
 import { Button } from '@/components/ui/button'
 import useCurrentUser from '@/hooks/use-current-user'
 
-import AvatarDropdown from './avatar-dropdown'
+import HeaderMenuDropdown from './header-menu-dropdown'
 import MobileSheet from './mobile-sheet'
 
 export default function Header() {
   const { user } = useCurrentUser()
 
   return (
-    <header className='sticky top-0 shadow bg-card'>
+    <header className='sticky top-0 shadow bg-card z-50'>
       <div className='w-full flex items-center justify-between lg:max-w-7xl mx-auto px-5 py-3 h-16'>
         <div className='flex items-center gap-x-3'>
           <MobileSheet />
@@ -35,7 +35,7 @@ export default function Header() {
             </Button>
           </div>
         )}
-        {user && <AvatarDropdown />}
+        {user && <HeaderMenuDropdown />}
       </div>
     </header>
   )

@@ -14,7 +14,7 @@ export default async function MainLayout({ children }: MainLayoutProps) {
     <main className='min-h-screen'>
       <SWRConfig value={{ fallback: { [CURRENT_USER]: user } }}>
         <Header />
-        <div className='w-full lg:max-w-7xl mx-auto px-5 py-3'>{children}</div>
+        <div className='w-full lg:max-w-7xl mx-auto px-5 py-4'>{children}</div>
       </SWRConfig>
     </main>
   )

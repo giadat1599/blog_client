@@ -7,6 +7,8 @@ interface HomePageProps {
   searchParams: Promise<{ page: string }>
 }
 
+export const revalidate = 0
+
 export default async function HomePage({ searchParams }: HomePageProps) {
   const queryParams = await searchParams
   const { data: posts, pageInfo } = await getPosts(queryParams.page)

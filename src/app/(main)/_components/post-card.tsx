@@ -11,10 +11,10 @@ interface PostCardProps {
 }
 
 export default function PostCard({ post }: PostCardProps) {
-  const { featuredImageUrl, id, author, summary, title, createdAt } = post
+  const { featuredImageUrl, author, summary, title, createdAt, slug } = post
   return (
     <Card className='hover:border-primary border-2 hover:shadow-primary/20 hover:shadow-md overflow-hidden transition shadow-none'>
-      <Link href={`/post/${id}`}>
+      <Link href={`/post/${slug}`}>
         <CardHeader className='p-0'>
           <Image
             src={featuredImageUrl}

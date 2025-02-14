@@ -7,6 +7,8 @@ import UserAvatar from '@/components/user-avatar'
 import { createdOrUpdatedText } from '@/lib/utils'
 import { getAllSlugs, getPostBySlug } from '@/services/server/posts'
 
+import CommentSection from './_components/comment/comment-section'
+
 interface PostPageProps {
   params: Promise<{ slug: string }>
 }
@@ -32,10 +34,10 @@ export async function generateMetadata({ params }: PostPageProps): Promise<Metad
 export default async function PostPage({ params }: PostPageProps) {
   const { slug } = await params
 
-  const { title, summary, author, createdAt, updatedAt, featuredImageUrl, body } = await getPostBySlug(slug)
+  const { title, summary, author, createdAt, updatedAt, featuredImageUrl, body, id } = await getPostBySlug(slug)
 
   return (
-    <article>
+    <article className='mb-10'>
       <div className='flex flex-col items-center space-y-3'>
         <h1 className='text-center text-4xl font-bold'>{title}</h1>
         <p className='text-center text-lg'>{summary}</p>
@@ -57,6 +59,8 @@ export default async function PostPage({ params }: PostPageProps) {
         </div>
       </div>
       <Markdown>{body}</Markdown>
+      <hr className='my-5' />
+      <CommentSection postId={id} />
     </article>
   )
 }
